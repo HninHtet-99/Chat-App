@@ -7,6 +7,10 @@
 .welcome{
     background-color: #e2f3f5;
 }
+.toggle-link{
+    cursor: pointer;
+    color: #22d1ee;
+}
 @media screen and (max-width:420px) {
     .welcome form{
         width: 100% !important;

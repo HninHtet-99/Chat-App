@@ -1,10 +1,13 @@
 <template>
-  <div class="login text-center">
+  <div class="sign-up text-center">
     <h1>Sign Up</h1>
     <form class="w-50 d-inline-block my-3" @submit.prevent="signUp">
       <input type="text" placeholder="name" class="form-control my-1" v-model="userName">
       <input type="email" placeholder="email" class="form-control my-1" v-model="email">
       <input type="password" placeholder="password" class="form-control my-1" v-model="password">
+      <div v-if="error" class="mt-2">
+        <span class="text-danger ">{{ error }}</span>
+      </div>
       <button class="btn btn-outline-secondary">Sign Up</button>
   </form>
   
@@ -13,18 +16,19 @@
 
 <script>
 import { ref } from '@vue/reactivity';
-import {auth} from '../firebase/config';
-
+import useSignUp from '@/composables/useSignUp';
 export default {
   setup(){
     let userName = ref('');
     let email = ref('');
-    let password = ref();
+    let password = ref('');
+    let{error,createAccount} = useSignUp();
+
     let signUp= async()=>{
-      let res = await auth.createUserWithEmailAndPassword(email.value,userName.value,password.value)
+      let res =  await createAccount(email.value,userName.value,password.value);
       console.log(res.user);
     }
-    return{userName,email,password,signUp}
+    return{userName,email,password,signUp,error}
   }
 }
 </script>
