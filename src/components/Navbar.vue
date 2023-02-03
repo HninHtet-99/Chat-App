@@ -33,7 +33,6 @@ export default {
         let {logout} =  useLogout();
         let {user} = getUser();
        
-        console.log(user);
         return {logout,user}
     }
 }

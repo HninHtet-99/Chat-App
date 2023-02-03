@@ -4,7 +4,7 @@
             <div class="col-12">
                 <div class="container vh-100 shadow">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 p-0">
                             <!-- nav -->
                             <Navbar/>
                         </div>
@@ -45,9 +45,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-8">
-                            <div class="chat-room-section">
-                                <textarea placeholder="Type Here!" class="shadow form-control"></textarea>
-                            </div>
+                            <ChatForm/>
                         </div>
                     </div>
                 </div>
@@ -57,9 +55,23 @@
 </template>
 
 <script>
+import ChatForm from '../components/ChatForm'
+import getUser from '@/composables/getUser'
 import Navbar from '../components/Navbar'
+import { useRouter } from 'vue-router';
+import { watch } from '@vue/runtime-core';
 export default {
-  components: { Navbar },
+  components: {
+    ChatForm, Navbar },
+  setup(){
+    let {user} = getUser();
+    let router = useRouter();
+    watch(user,()=>{
+        if (!user.value) {
+            router.push('/')
+        }
+    })
+  }
 
 }
 </script>
@@ -92,15 +104,7 @@ export default {
     font-weight: 500;
     color: #0e153a;
 }
-.chat-room-section textarea{
-    width: 850px;
-    height: 20px;
-    margin-bottom: 20px;
-    border: none;
-    padding: 5px;
-    position: fixed;
-    bottom: 0;
-}
+
 @media screen and (max-width:420px) {
     .chat-section{
         display: none;
