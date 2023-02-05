@@ -45,6 +45,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-8">
+                            <SingleChat/>
                             <ChatForm/>
                         </div>
                     </div>
@@ -55,6 +56,7 @@
 </template>
 
 <script>
+import SingleChat from '../components/SingleChat'
 import ChatForm from '../components/ChatForm'
 import getUser from '@/composables/getUser'
 import Navbar from '../components/Navbar'
@@ -62,6 +64,7 @@ import { useRouter } from 'vue-router';
 import { watch } from '@vue/runtime-core';
 export default {
   components: {
+    SingleChat,
     ChatForm, Navbar },
   setup(){
     let {user} = getUser();
