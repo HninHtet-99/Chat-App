@@ -2,7 +2,7 @@
   <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <div class="container vh-100 shadow">
+                <div class="container shadow">
                     <div class="row">
                         <div class="col-12 p-0">
                             <!-- nav -->

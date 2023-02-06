@@ -1,6 +1,20 @@
 <template>
   <div class="chat mt-3">
-    <div class="single-chat sender-single-chat">
+    <div v-for="eachMessage in allMessages" 
+    :key="eachMessage.id" 
+    class="single-chat"
+    :class = "(eachMessage.sender_name == currentUser ? 'sender-single-chat' : 'receiver-single-chat')" 
+    >
+        <div class="single mx-1">
+            <span class="name">{{ eachMessage.sender_name }}</span>
+            <span class="message">{{ eachMessage.message }}</span>
+            <span class="time">{{ eachMessage.created_at}}</span>
+        </div>
+        <div class="">
+            <img src="../assets/img/logos/bootstrap.png" class="img" alt="">
+        </div>
+    </div>
+    <!-- <div class="single-chat receiver-single-chat">
         <div class="single mx-1">
             <span class="name">Hnin Htet</span>
             <span class="message">Hello theredcfsd</span>
@@ -9,17 +23,7 @@
         <div class="">
             <img src="../assets/img/logos/bootstrap.png" class="img" alt="">
         </div>
-    </div>
-    <div class="single-chat receiver-single-chat">
-        <div class="single mx-1">
-            <span class="name">Hnin Htet</span>
-            <span class="message">Hello theredcfsd</span>
-            <span class="time">3 mins ago</span>
-        </div>
-        <div class="">
-            <img src="../assets/img/logos/bootstrap.png" class="img" alt="">
-        </div>
-    </div>
+    </div> -->
     <!-- <div class="single-chat receiver-single-chat">
         <div class="">
                 <img src="../assets/img/logos/illustrator.png" class="img" alt="">
@@ -34,7 +38,26 @@
 </template>
 
 <script>
+import { auth, db } from '@/firebase/config'
+import { ref } from '@vue/reactivity'
+
 export default {
+    setup(){
+        let currentUser = auth.currentUser.displayName;
+        console.log(currentUser);
+        let allMessages = ref([]);
+        db.collection('messages').orderBy('created_at').onSnapshot((snap)=>{
+            let context = [];
+            snap.docs.forEach((doc)=>{
+                let document = {id:doc.id,...doc.data()};
+                context.push(document);
+            })
+            console.log(context);
+            allMessages.value = context;
+        })
+
+        return{allMessages,currentUser}
+    }
 
 }
 </script>
