@@ -1,83 +1,85 @@
 <template>
-  <div class="chat mt-3">
-    <div v-for="eachMessage in allMessages" 
+  <div class="chat mt-1 p-2" ref="msgBox">
+    <div v-for="eachMessage in formatMessages" 
     :key="eachMessage.id" 
-    class="single-chat"
+    class="single-chat my-1"
     :class = "(eachMessage.sender_name == currentUser ? 'sender-single-chat' : 'receiver-single-chat')" 
+    
     >
         <div class="single mx-1">
             <span class="name">{{ eachMessage.sender_name }}</span>
             <span class="message">{{ eachMessage.message }}</span>
-            <span class="time">{{ eachMessage.created_at}}</span>
+            <span class="time">{{ eachMessage.created_at}} ago</span>
         </div>
         <div class="">
             <img src="../assets/img/logos/bootstrap.png" class="img" alt="">
         </div>
     </div>
-    <!-- <div class="single-chat receiver-single-chat">
-        <div class="single mx-1">
-            <span class="name">Hnin Htet</span>
-            <span class="message">Hello theredcfsd</span>
-            <span class="time">3 mins ago</span>
-        </div>
-        <div class="">
-            <img src="../assets/img/logos/bootstrap.png" class="img" alt="">
-        </div>
-    </div> -->
-    <!-- <div class="single-chat receiver-single-chat">
-        <div class="">
-                <img src="../assets/img/logos/illustrator.png" class="img" alt="">
-        </div>
-        <div class="single mx-1">
-            <span class="name">Hnin Htet</span>
-            <span class="message">Hello theredcfsd</span>
-            <span class="time">3 mins ago</span>
-        </div>
-    </div> -->
   </div>
 </template>
 
 <script>
 import { auth, db } from '@/firebase/config'
 import { ref } from '@vue/reactivity'
-
+import { computed, onUpdated } from '@vue/runtime-core'
+import { formatDistanceToNow } from 'date-fns'
 export default {
     setup(){
+        let msgBox = ref(null);
+        onUpdated(()=>{
+            msgBox.value.scrollTop = msgBox.value.scrollHeight;
+        })
+
         let currentUser = auth.currentUser.displayName;
-        console.log(currentUser);
         let allMessages = ref([]);
+        let formatMessages = computed(()=>{
+            return allMessages.value.map((el)=>{
+                let formatTime = formatDistanceToNow(el.created_at.toDate(),{includeSeconds: true})
+                return {...el,created_at:formatTime}
+            })
+        })
         db.collection('messages').orderBy('created_at').onSnapshot((snap)=>{
             let context = [];
             snap.docs.forEach((doc)=>{
                 let document = {id:doc.id,...doc.data()};
-                context.push(document);
-            })
-            console.log(context);
+                doc.data().created_at && context.push(document);
+            });
             allMessages.value = context;
         })
 
-        return{allMessages,currentUser}
+        return{msgBox,allMessages,formatMessages,currentUser}
     }
 
 }
 </script>
 
 <style>
+.chat{
+    height: 75vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+.chat::-webkit-scrollbar {
+  width: 0px;
+}
 .single-chat{
     display: flex;
     align-items: center;
     position: relative;
-    width: 200px;
+    width: 336px;
 }
 .sender-single-chat{
-    left: 70%;
+    left: 50%;
 }
 .receiver-single-chat{
     flex-direction: row-reverse;
+    left: -20px;
 }
 .single{
     display: inline-flex;
     flex-direction: column;
+    width: 270px;
 }
 .sender-single-chat .single{
     align-items: flex-end;
@@ -107,7 +109,7 @@ export default {
 }
 @media screen and (max-width:420px) {
     .sender-single-chat{
-        left: 45%;
+        left: 5%;
     }
     
 }

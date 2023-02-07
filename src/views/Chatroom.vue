@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-12 col-md-4 border-end border-3">
                             <div class="chat-section">
-                                <div class="chat border-bottom">
+                                <div class="chat-head border-bottom">
                                     <div class="chat-body">
                                         <div class="chat-img">
                                             <img src="" alt="">
@@ -27,7 +27,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="chat border-bottom">
+                                <div class="chat-head border-bottom">
                                     <div class="chat-body">
                                         <div class="chat-img">
                                             <img src="" alt="">
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-8">
+                        <div class="col-12 col-md-8" style="background-color: #fafafa;">
                             <SingleChat/>
                             <ChatForm/>
                         </div>
