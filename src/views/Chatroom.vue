@@ -6,45 +6,45 @@
                     <div class="row">
                         <div class="col-12 p-0">
                             <!-- nav -->
-                            <Navbar/>
+                            <Navbar @showChatBar="showChatBar"/>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-md-4 border-end border-3">
+                        <div class="col-4 border-end border-3 chatBar" ref="chatBar" v-if="chatBar" style="width: 85%;">                            
                             <div class="chat-section">
-                                <div class="chat-head border-bottom">
-                                    <div class="chat-body">
-                                        <div class="chat-img">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="chat-text-section">
-                                            <div class="chat-name">
-                                                <span>Hnin Htet Aung</span>
-                                            </div>
-                                            <div class="chat-paragraph">
-                                                <p>Lorem ipsum dolor sit amet consectetur</p>
-                                            </div>
-                                        </div>
+                            <div class="chat-head border-bottom">
+                                <div class="chat-body">
+                                    <div class="chat-img">
+                                        <img src="" alt="">
                                     </div>
-                                </div>
-                                <div class="chat-head border-bottom">
-                                    <div class="chat-body">
-                                        <div class="chat-img">
-                                            <img src="" alt="">
+                                    <div class="chat-text-section">
+                                        <div class="chat-name">
+                                            <span>Hnin Htet Aung</span>
                                         </div>
-                                        <div class="chat-text-section">
-                                            <div class="chat-name">
-                                                <span>Hnin Htet Aung</span>
-                                            </div>
-                                            <div class="chat-paragraph">
-                                                <p>Lorem ipsum dolor sit amet consectetur</p>
-                                            </div>
+                                        <div class="chat-paragraph">
+                                            <p>Lorem ipsum dolor sit amet consectetur</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="chat-head border-bottom">
+                                <div class="chat-body">
+                                    <div class="chat-img">
+                                        <img src="" alt="">
+                                    </div>
+                                    <div class="chat-text-section">
+                                        <div class="chat-name">
+                                            <span>Hnin Htet Aung</span>
+                                        </div>
+                                        <div class="chat-paragraph">
+                                            <p>Lorem ipsum dolor sit amet consectetur</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>                        
                         </div>
-                        <div class="col-12 col-md-8" style="background-color: #fafafa;">
+                        <div class="col-8" style="background-color: #fafafa; width: 100%;">
                             <SingleChat/>
                             <ChatForm/>
                         </div>
@@ -61,12 +61,13 @@ import ChatForm from '../components/ChatForm'
 import getUser from '@/composables/getUser'
 import Navbar from '../components/Navbar'
 import { useRouter } from 'vue-router';
-import { watch } from '@vue/runtime-core';
+import { ref, watch } from '@vue/runtime-core';
 export default {
   components: {
     SingleChat,
     ChatForm, Navbar },
   setup(){
+    let chatBar = ref(true);
     let {user} = getUser();
     let router = useRouter();
     watch(user,()=>{
@@ -74,6 +75,11 @@ export default {
             router.push('/')
         }
     })
+    let showChatBar = ()=>{
+        chatBar.value = !chatBar.value;
+        console.log(chatBar.value);
+    }
+    return{showChatBar,chatBar}
   }
 
 }
@@ -84,12 +90,15 @@ export default {
     background-color: #0e153a;
 }
 .navbar-brand{
-    color: aliceblue !important;
+    color: #f0f8ff !important;
 }
 .chat-body{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.chat-section{
+    position: absolute;
 }
 .chat-img{
     display: contents;
@@ -110,7 +119,21 @@ export default {
 
 @media screen and (max-width:420px) {
     .chat-section{
-        display: none;
+        height: 88vh;
+        left: 15px;
+        width: 85%;
+        position: absolute;
+        z-index: 1;
+        background-color: #6e76a0;
+        animation: showChat 1s;
+    }
+    @keyframes showChat {
+        from{
+            transform: translateX(-1px);
+        }
+        to{
+            transform: translateX(0px);
+        }
     }
 }
 </style>

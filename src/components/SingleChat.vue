@@ -12,7 +12,8 @@
             <span class="time">{{ eachMessage.created_at}} ago</span>
         </div>
         <div class="">
-            <img src="../assets/img/logos/bootstrap.png" class="img" alt="">
+            <!-- <div>{{ eachMessage.image }}</div> -->
+            <img :src="url" class="img" alt="" ref="url">
         </div>
     </div>
   </div>
@@ -26,6 +27,7 @@ import { formatDistanceToNow } from 'date-fns'
 export default {
     setup(){
         let msgBox = ref(null);
+        let url = ref(null);
         onUpdated(()=>{
             msgBox.value.scrollTop = msgBox.value.scrollHeight;
         })
@@ -35,6 +37,7 @@ export default {
         let formatMessages = computed(()=>{
             return allMessages.value.map((el)=>{
                 let formatTime = formatDistanceToNow(el.created_at.toDate(),{includeSeconds: true})
+                url.value = el.image;
                 return {...el,created_at:formatTime}
             })
         })
@@ -47,7 +50,7 @@ export default {
             allMessages.value = context;
         })
 
-        return{msgBox,allMessages,formatMessages,currentUser}
+        return{msgBox,allMessages,formatMessages,currentUser,url}
     }
 
 }

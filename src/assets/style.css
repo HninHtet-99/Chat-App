@@ -4,6 +4,7 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 .welcome{
     background-color: #e2f3f5;
 }
@@ -13,6 +14,6 @@
 }
 @media screen and (max-width:420px) {
     .welcome form{
-        width: 100% !important;
+        width: 95% !important;
     }
 }

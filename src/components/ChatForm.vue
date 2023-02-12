@@ -22,7 +22,8 @@ setup(){
         let chat = {
             message: message.value,
             sender_name: user.value.displayName,
-            created_at: timestamp()
+            created_at: timestamp(),
+            image: user.value.photoURL
         }
         await addDoc(chat);
         message.value='';

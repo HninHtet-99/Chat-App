@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
         <div class="col-12">
-            <div class="welcome my-5 shadow-sm p-5 rounded-5">
+            <div class="welcome my-5 shadow-sm py-5 rounded-5">
                 <div v-if="showLoginForm">
                   <LogIn @enterChatroom = "enterChatroom"/>
                   <p class="text-center text-secondary">Create Account! <span class="text-decoration-underline toggle-link" @click="showLoginForm=!showLoginForm">Sign Up</span></p>

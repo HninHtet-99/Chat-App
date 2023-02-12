@@ -2,7 +2,7 @@
   <div class="nav-section" v-if="user">
         <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" @click="showSideBar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -28,12 +28,14 @@ import getUser from '@/composables/getUser';
 
 
 export default {
-    setup(){
-        
+    setup(props,context){
+        let showSideBar = ()=>{
+            context.emit('showChatBar');
+        }
         let {logout} =  useLogout();
         let {user} = getUser();
        
-        return {logout,user}
+        return {logout,user,showSideBar}
     }
 }
 </script>
