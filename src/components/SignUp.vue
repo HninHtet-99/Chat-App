@@ -19,26 +19,31 @@
 <script>
 import { ref } from '@vue/reactivity';
 import useSignUp from '@/composables/useSignUp';
+import { computed } from '@vue/runtime-core';
+
 export default {
   setup(props,context){
     let userName = ref('');
     let email = ref('');
     let password = ref('');
-    let image = ref(null);
-    let url = ref(null);
+    let image = ref();
+    let url = ref() ;
     let{error,createAccount} = useSignUp();
 
-    let imgUpload = (e)=>{
-
-      // url.value = URL.createObjectURL(image.value.files[0]);
-      // console.log(e.target.files[0]);
-      let fileReader = new FileReader();
-      console.log(fileReader);
-      // fileReader.addEventListener('load',()=>{
-      //   console.log(fileReader.result);
-      // })
-      // console.log(fileReader.readAsDataURL(e.target.files[0]));
-    }
+    let imgUpload = computed(()=>{
+      const reader = new FileReader();
+      const file = image.value.files[0];
+      url.value = reader.readAsDataURL(file);
+      // if (file) {
+      //   reader.addEventListener("load", () => {
+      
+      //   url.value = reader.result;
+      //   }, false);
+        console.log(reader.result);
+        
+      // } 
+      // return reader.readAsDataURL(file);
+    })
 
     let signUp= async()=>{
       let res =  await createAccount(email.value,userName.value,password.value,url.value);

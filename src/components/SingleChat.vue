@@ -111,6 +111,9 @@ export default {
     background-color: #f0f0f0;
 }
 @media screen and (max-width:420px) {
+    .chat{
+        height: 85vh;
+    }
     .sender-single-chat{
         left: 5%;
     }

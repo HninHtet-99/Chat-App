@@ -10,41 +10,44 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 border-end border-3 chatBar" ref="chatBar" v-if="chatBar" style="width: 85%;">                            
+                        <div class="col-4 border-end border-3 chat-bar" ref="chatBar" v-if="chatBar">                            
                             <div class="chat-section">
-                            <div class="chat-head border-bottom">
-                                <div class="chat-body">
-                                    <div class="chat-img">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div class="chat-text-section">
-                                        <div class="chat-name">
-                                            <span>Hnin Htet Aung</span>
+                                <button class="btn btn-outline-light close-btn d-block d-md-none" @click="chatBar=!chatBar">close</button>
+                                <div class="mt-5 mt-md-2">
+                                    <div class="chat-head border-bottom">
+                                    <div class="chat-body">
+                                        <div class="chat-img">
+                                            <img src="" alt="">
                                         </div>
-                                        <div class="chat-paragraph">
-                                            <p>Lorem ipsum dolor sit amet consectetur</p>
+                                        <div class="chat-text-section">
+                                            <div class="chat-name">
+                                                <span>Hnin Htet Aung</span>
+                                            </div>
+                                            <div class="chat-paragraph">
+                                                <p>Lorem ipsum dolor sit amet consectetur</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="chat-head border-bottom">
+                                        <div class="chat-body">
+                                            <div class="chat-img">
+                                                <img src="" alt="">
+                                            </div>
+                                            <div class="chat-text-section">
+                                                <div class="chat-name">
+                                                    <span>Hnin Htet Aung</span>
+                                                </div>
+                                                <div class="chat-paragraph">
+                                                    <p>Lorem ipsum dolor sit amet consectetur</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="chat-head border-bottom">
-                                <div class="chat-body">
-                                    <div class="chat-img">
-                                        <img src="" alt="">
-                                    </div>
-                                    <div class="chat-text-section">
-                                        <div class="chat-name">
-                                            <span>Hnin Htet Aung</span>
-                                        </div>
-                                        <div class="chat-paragraph">
-                                            <p>Lorem ipsum dolor sit amet consectetur</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             </div>                        
                         </div>
-                        <div class="col-8" style="background-color: #fafafa; width: 100%;">
+                        <div class="col-8 single-chat-section" style="background-color: #fafafa;">
                             <SingleChat/>
                             <ChatForm/>
                         </div>
@@ -97,9 +100,7 @@ export default {
     justify-content: center;
     align-items: center;
 }
-.chat-section{
-    position: absolute;
-}
+
 .chat-img{
     display: contents;
 }
@@ -118,13 +119,28 @@ export default {
 }
 
 @media screen and (max-width:420px) {
+    .nav-section{
+        position: absolute;
+        width: 93%;
+        z-index: 1;
+    }
+    .close-btn{
+        position: absolute;
+        right: 0;
+    }
+    .chat-bar{
+        width: 85%;
+    }
+    .single-chat-section{
+        width: 100%;
+    }
     .chat-section{
-        height: 88vh;
+        height: 99vh;
         left: 15px;
         width: 85%;
         position: absolute;
         z-index: 1;
-        background-color: #6e76a0;
+        background-color: #b2b8d3;
         animation: showChat 1s;
     }
     @keyframes showChat {
