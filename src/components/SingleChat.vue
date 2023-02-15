@@ -13,7 +13,7 @@
         </div>
         <div class="">
             <!-- <div>{{ eachMessage.image }}</div> -->
-            <img :src="url" class="img" alt="" ref="url">
+            <img src="../assets/img/logos/bootstrap.png" class="img" alt="" >
         </div>
     </div>
   </div>
