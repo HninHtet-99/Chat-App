@@ -1,6 +1,7 @@
 import { auth } from '@/firebase/config';
 import { ref } from '@vue/reactivity';
 
+let allUsers = ref([]);
 let user = ref(auth.currentUser)
 let getUser = ()=>{
     auth.onAuthStateChanged((_user)=>{

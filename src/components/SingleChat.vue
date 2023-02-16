@@ -71,18 +71,22 @@ export default {
     align-items: center;
     position: relative;
     width: 336px;
+    /* width: 400px; */
 }
 .sender-single-chat{
-    left: 50%;
+    /* left: 50%; */
+    right: -65%;
 }
 .receiver-single-chat{
     flex-direction: row-reverse;
-    left: -20px;
+    /* left: -20px; */
+    left: 45px;
 }
 .single{
     display: inline-flex;
     flex-direction: column;
-    width: 270px;
+    /* width: 270px; */
+    width: 360px;
 }
 .sender-single-chat .single{
     align-items: flex-end;
@@ -114,8 +118,12 @@ export default {
     .chat{
         height: 85vh;
     }
+    .receiver-single-chat{
+        left: auto;
+
+    }
     .sender-single-chat{
-        left: 5%;
+        left: 0%;
     }
     
 }

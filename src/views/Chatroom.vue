@@ -10,7 +10,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 border-end border-3 chat-bar" ref="chatBar" v-if="chatBar">                            
+                        <!-- <div class="col-4 border-end border-3 chat-bar" ref="chatBar" v-if="chatBar">                            
                             <div class="chat-section">
                                 <button class="btn btn-outline-light close-btn d-block d-md-none" @click="chatBar=!chatBar">close</button>
                                 <div class="mt-5 mt-md-2">
@@ -46,8 +46,8 @@
                                     </div>
                                 </div>
                             </div>                        
-                        </div>
-                        <div class="col-8 single-chat-section" style="background-color: #fafafa;">
+                        </div> -->
+                        <div class="col-12 single-chat-section" style="background-color: #fafafa;">
                             <SingleChat/>
                             <ChatForm/>
                         </div>

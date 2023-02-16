@@ -2,14 +2,10 @@
   <div class="nav-section" v-if="user">
         <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" @click="showSideBar">
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" @click="showSideBar">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form> -->
                     <div class="text-white-50">
                         <p class="mb-0">Hello, {{user.displayName}}</p>
                         <p class="mb-0">login with {{user.email}}</p>
