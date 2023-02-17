@@ -13,7 +13,8 @@
         </div>
         <div class="">
             <!-- <div>{{ eachMessage.image }}</div> -->
-            <img src="../assets/img/logos/bootstrap.png" class="img" alt="" >
+            <!-- <img src="../assets/img/logos/bootstrap.png" class="img" alt="" > -->
+            <img src="../assets/img/chat-icon-one.png" class="img" alt="">
         </div>
     </div>
   </div>

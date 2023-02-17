@@ -6,11 +6,18 @@
 }
 
 .welcome{
-    background-color: #e2f3f5;
+    background-color: #f0f8ff;
 }
 .toggle-link{
     cursor: pointer;
-    color: #22d1ee;
+    color: #0e153a;
+}
+.outline-color{
+    border: 1px solid #0e153a;
+}
+form > button:hover.outline-color{
+    background-color: #0e153a;
+    color: #f0f8ff;
 }
 @media screen and (max-width:420px) {
     .welcome form{

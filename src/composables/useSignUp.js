@@ -9,7 +9,6 @@ let createAccount =async(email,userName,password)=>{
           throw new Error('Could not create new account! Try Again!');
         }
         res.user.updateProfile({displayName:userName});
-        console.log(res);
         return res;
         
       } catch (err) {

@@ -7,7 +7,7 @@
       <div v-if="error" class="my-2">
         <span class="text-danger ">{{ error }}</span>
       </div>
-      <button class="btn btn-outline-secondary">Login</button>
+      <button class="btn outline-color">Login</button>
     </form>
     
   </div>
